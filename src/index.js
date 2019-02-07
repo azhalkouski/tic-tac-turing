@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, browserHistory } from 'react-router';
+import Routes from './getRoutes';
+
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <div>
-    <h1>Tic Tac Turing!</h1>
-  </div>
+  <Router
+    history={browserHistory}
+    routes={Routes}
+  />
   , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

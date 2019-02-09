@@ -3,7 +3,7 @@ import Drawer from '@material-ui/core/Drawer';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
 import { Link } from 'react-router';
-import { NavToggleButton } from '../styled/NavDrawer';
+import { NavToggleButton } from '../styled/StyledNavDrawer';
 
 class NavDrawer extends Component {
   state = {

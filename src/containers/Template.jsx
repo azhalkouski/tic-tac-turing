@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import NavDrawer from '../components/NavDrawer';
+import { StyledHeader, Main } from '../styled/StyledTemplate';
 
 const theme = createMuiTheme({
   palette: {
@@ -23,9 +24,10 @@ class TemplateContainer extends Component {
       <MuiThemeProvider theme={theme}>
         <div>
           <NavDrawer />
-          <main>
+          <StyledHeader>Tic Tac Turing</StyledHeader>
+          <Main>
             {this.props.children}
-          </main>
+          </Main>
         </div>
       </MuiThemeProvider>
     );

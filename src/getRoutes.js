@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import Template from './components/Template';
-import Home from './components/Home';
-import Profile from './components/Profile';
+import Template from './containers/Template';
+import Home from './containers/Home';
+import Profile from './containers/Profile';
 
 const getRoutes = () => (
   <Route

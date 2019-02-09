@@ -1,5 +1,7 @@
 Heroku address - https://tic-tac-turing-react-app-x.herokuapp.com/
 
+LinkedIn course source - https://www.linkedin.com/learning/building-and-deploying-a-full-stack-react-application/building-a-nav-drawer
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

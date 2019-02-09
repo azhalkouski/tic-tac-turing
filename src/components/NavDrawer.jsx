@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
-import FloatingActionButton from '@material-ui/core/Fab';
-import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router';
+import { NavToggleButton } from '../styled/NavDrawer';
 
 class NavDrawer extends Component {
   state = {
     open: false,
+    width: 250,
   }
 
   toggle = () => {
@@ -19,10 +19,8 @@ class NavDrawer extends Component {
     console.log(this.state);
     return (
       <div>
-        <FloatingActionButton color="primary" aria-label="Add" onClick={this.toggle}>
-          <MenuIcon />
-        </FloatingActionButton>
-        <Drawer open={this.state.open}>
+        <NavToggleButton onClick={this.toggle} width={this.state.width} isOpen={this.state.open} />
+        <Drawer open={this.state.open} width={this.state.width} variant="persistent">
           <div
             style={{
               height: '200px',

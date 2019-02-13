@@ -2,8 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import Routes from './getRoutes';
+import Relay from 'react-relay';
+import userRelay from 'react-router-relay';
+import { RelayNetworkLayer, urlMiddleware } from 'react-relay-network-layer';
+import { relayApi } from './config/endpoints';
+import auth from './utils/auth';
 
 import * as serviceWorker from './serviceWorker';
+
+const createHeaders = () => {
+  let idToken = auth.getToken()
+  if (idToken) {
+    return { Authorization: `Bearer ${idToken}` }
+  } else {
+    return {}
+  }
+}
 
 ReactDOM.render(
   <Router

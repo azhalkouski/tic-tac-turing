@@ -2,7 +2,28 @@ import React, { Component } from 'react';
 import { Stage } from 'react-konva';
 import { Board, Squares } from '../styled/StyledTicTacToe';
 
+const random = (min, max) => {
+  const $min = Math.ceil(min);
+  const $max = Math.floor(max);
+  return Math.floor(Math.random() * ($max - $min)) + $min;
+}
+
 class TicTacToe extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.combos = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+  }
 
   state = {
     rows: 3,
@@ -39,13 +60,55 @@ class TicTacToe extends Component {
     });
   }
 
-  move = (marker, index) => {
-    console.log('Move made ', marker, index);
-    // placeholder
+  move = (index, marker) => {
+    // TODO: simplify this
+    this.setState( (prevState, prop) => {
+      let {gameState, yourTurn, gameOver, winner} = prevState;
+      const aiTurn = !yourTurn
+      gameState.splice(index, 1, marker);
+
+      const foundWin = this.winChecker(gameState)
+      if (foundWin) {
+        winner = gameState[foundWin[0]]
+      }
+      if (foundWin || !gameState.includes(false)) {
+        gameOver = true
+      }
+      if (!aiTurn && !gameOver) {
+        this.makeAiMove(gameState)
+      }
+      return {
+        gameState,
+        yourTurn: aiTurn,
+        gameOver,
+        win: foundWin || false,
+        winner
+      }
+    })
   }
 
-  makeAiMove = () => {
-    // placeholder
+  makeAiMove = (gameState) => {
+    const { otherMark } = this.state;
+    const openSquares = [];
+
+    gameState.forEach((square, index) => {
+      if (!square) {
+        openSquares.push(index);
+      }
+    });
+
+    const aiMove = openSquares[random(0, openSquares.length)];
+
+    this.move(aiMove, otherMark);
+  }
+
+  winChecker = (gameState) => {
+    const combos = this.combos;
+
+    return combos.find((combo) => {
+      const [a, b, c] = combo;
+      return (gameState[a] && gameState[a] === gameState[b] && gameState[a] && gameState[c]);
+    });
   }
 
   turingTest = () => {}
